@@ -10,23 +10,49 @@ class customer(human):
     def createCustomer(self,days):
         super().createHuman()
         self.__daysOfStay = days
+        print('\n')
 
     def showData(self):
         super().showData()
-        print(f'Days of stay : {self.__daysOfStay}\n--------------------------\n')
+        print(f'Days of stay : {self.__daysOfStay}\nRoom number : {self.__roomNumber}\n--------------------------\n')
+
     
+
+    def getDays(self):
+        return self.__daysOfStay
+    def getroomNumber(self):
+        return self.__roomNumber
+
+    def setDays(self,days):
+        self.__daysOfStay = days
+    def setRoomNumber(self,number):
+        self.__roomNumber = number    
+
+    def deleteDays(self):
+        self.__daysOfStay = None
+    def deleteRoomNumber(self):
+        self.__roomNumber = None
         
 
 class customerGroup():
 
     def __init__(self):
-        self.__groupRepresentative = 'None'
         self.__groupList = []
+        self.__groupRepresentative = human()
+    
+    def getGroupList(self):
+        return self.__groupList
 
-    @property
-    def getRepresentative(self):
-        print('\n-------------GROUP REPRESENTATIVE DATA-------------')
+    def getGroupRepresentative(self):
         return self.__groupRepresentative
+
+    def setGroupRepresentative(self, representative):
+        self.__groupRepresentative = representative
+
+    def representativeData(self):
+        self.getGroupRepresentative().showData
+
+
 
     def createGroup(self):
 
@@ -44,35 +70,43 @@ class customerGroup():
             self.__groupList.append(customerAux)
 
         print('\n')
-        print('Select the group representatice\n')
-        self.setRepresentative()
-
-
+        if len(self.__groupList) > 1:
+            print('SELECT THE GROUP REPRESENTATIVE')
+        self.selectGroupRepresentative()
+            
+        
     def groupListing(self):
 
         if len(self.__groupList) > 0:
-            print(self.__groupRepresentative)
             for x in self.__groupList:
                 x.showData()
         else:
             print('No customers in the group')
 
-    def setRepresentative(self):
+    
+    def selectGroupRepresentative(self):
+        
+        control = True
 
         if len(self.__groupList) == 1:
             self.__groupRepresentative = self.__groupList[0]
 
         else:
-            if len(self.__groupList) > 0:
-                self.groupListing()
-                while  self.__groupRepresentative == 'None' :
+            
+            while control:
+                representativeName = input('Enter the group representative name : ')
+                representativeAge = int(input('Enter the group representative age : '))
+                for x in self.__groupList:
+                    
 
-                    representativeAux = input('Enter the name of the group representative : ')
-                    for x in self.__groupList:
-                        if representativeAux.lower() == x.getName.lower():
-                            self.__groupRepresentative = x
-                            break
-                        
+                    if x.getName() == representativeName and x.getAge() == representativeAge:
+                        self.setGroupRepresentative(x)
+                        control = False
+                        break
+                
+
+
+
                     
 
 

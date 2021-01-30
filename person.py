@@ -12,15 +12,24 @@ class human():
         self.__age = int(input('Enter age : '))
         self.__nationaliy = input("Enter country of origin : ")
         
-    @property
+
     def getName(self):
         return self.__name
-    @property
+
     def getAge(self):
         return self.__age
-    @property
+
     def getNationality(self):
         return self.__nationaliy
+
+    def setAge(self,age):
+        self.__age = age
+
+    def setName(self,name):
+        self.__name = name
+    
+    def setNationality(self,nationality):
+        self.__nationaliy = nationality
 
     def showData(self):
         print(f'--------------------------\nNombre : {self.__name}\nEdad : {self.__age}\nPais de origen : {self.__nationaliy}')

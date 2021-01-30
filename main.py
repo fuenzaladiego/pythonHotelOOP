@@ -1,5 +1,6 @@
-from hotel import *
-import pickle
+from hotel import * 
 
-diego = hotel()
-
+hotel = hotel()
+hotel.createHotel()
+manager = hotel.getHotelManager()
+manager.showData()

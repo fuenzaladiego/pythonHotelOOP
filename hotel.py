@@ -1,5 +1,8 @@
 import pickle
 from employee import *
+from room import *
+from customer import *
+
 
 class hotel():
 
@@ -7,49 +10,65 @@ class hotel():
 
         self.__hotelName = ''
         self.__hotelManager = employee()
-        self.__hotelManager.createEmployee()
         self.__roomList = []
         try:
             roomNumbers = open('roomNumbers.txt','x')
+            roomNumbers.close()
         except:
             print('File already created.\n')
-        finally:
-            roomNumbers.close()
+         
         
 
-    @property
+
     def getHotelManager(self):
         return self.__hotelManager
-    @property
+
     def getHotelName(self):
         return self.__hotelName
+    
+    def setHotelName(self,name):
+        self.__hotelName = name
+    
+    def setHotelManager(self,manager):
+        self.__hotelManager = manager
+    
+    def deleteHotelManager(self):
+        del(self.__hotelManager)
+
+
+    def createHotel(self):
+        self.__hotelName = input('Enter hotel name : ')
+        print('\nEnter the hotel manager info')
+        self.__hotelManager.createEmployee()
+
 
     def validateRoomNumber(self, number):
-        fileh = open('roomNumbers.txt','r')
-        text = ''
-        for x in fileh:
-            text+= str(x)
+        if len(self.__roomList) == 0:
+            return True
+        else:
+            for x in self.__roomList:
+                if(x.getRoomNumber()) == number:
+                    print('Number already in use.\n')
+                    return False
+            return True
 
-        array = text.split(' ')
-        fileh.close()
+        return False
 
-        for x in array:
-            if number == int(array):
-                print('Room number already in use.\n')
-                return False
-
-        print('Valid room number\n')
-        return True
 
 
     def createRoom(self):
-        control = True
-        archivo = open('roomNumbers.txt','w')
-        while(control):
-            roomNumber = int(input('Enter the new room number: '))
-            if self.validateRoomNumber(roomNumber):
-                archivo.write(str(roomNumber)+' ')
-                control = False
+
+        habitacion = room()
+        roomNumber = int(input('Enter the new room number : '))
+
+        while self.validateRoomNumber(roomNumber) == False:
+            roomNumber = int(input('Enter the new room number : '))
+        habitacion.setRoomNumber   = roomNumber
+
+
+
+
+    
 
     
             

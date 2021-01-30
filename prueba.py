@@ -1,15 +1,19 @@
+class prueba():
+
+    def __init__(self):
+
+        self.__nombre = 'Diego'
 
 
-archivo = open('prueba.txt','r')
-string = ''
-numero = 3
-for x in archivo:
-    string+= str(x)
+    
+    @property
+    def getNombre(self):
+        return self.__nombre
 
-array = string.split(' ')
-print(array)
-for x in array:
-    print(x)
-    if int(x) == numero:
-        print('Eureka!!')
-        break
+  
+
+
+diego = prueba
+
+
+print(diego.getNombre)

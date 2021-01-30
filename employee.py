@@ -7,19 +7,25 @@ class employee(human):
         self.__position = ''
         self.__salary = 0
 
-    @property
+
     def getSalary(self):
         return self.__salary
-    @property 
+
     def getPosition(self):
         return self.__position
 
+    def setSalary(self,salaryy):
+        self.__salary = salaryy
+
+    def setPosition(self,position):
+        self.__position = position
 
     def createEmployee(self):
 
         super().createHuman()
         self.__position = input('Enter position : ')
         self.__salary = int(input('Enter salary : '))
+        print('\n')
 
     def showData(self):
 
