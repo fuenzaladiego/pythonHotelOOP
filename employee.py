@@ -6,7 +6,14 @@ class employee(human):
 
         self.__position = ''
         self.__salary = 0
+        self.__id = -1
 
+
+    def getId(self):
+        return self.__id
+
+    def setId(self,id):
+        self.__id = id
 
     def getSalary(self):
         return self.__salary
@@ -20,14 +27,15 @@ class employee(human):
     def setPosition(self,position):
         self.__position = position
 
-    def createEmployee(self):
+    def createEmployee(self,id):
 
         super().createHuman()
         self.__position = input('Enter position : ')
         self.__salary = int(input('Enter salary : '))
+        self.__id = id
         print('\n')
 
     def showData(self):
 
         super().showData()
-        print(f'Salary : {self.__salary}\nPosition : {self.__position}\n--------------------------')
+        print(f'Salary : {self.__salary}\nPosition : {self.__position}\nId : {self.__id}\n--------------------------')

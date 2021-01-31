@@ -5,7 +5,7 @@ class room():
 
     def __init__(self):
 
-        self.__roomNumber = 0
+        self.__roomNumber = int
         self.__roomGroup = customerGroup()
         self.__occupied = False
 

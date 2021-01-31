@@ -1,21 +1,47 @@
-import pickle
 from employee import *
 from room import *
 from customer import *
+
+
+
+
+
+def validateNumber(dicionary,number):
+    length = len(dicionary)
+    if length == 0:
+        return True
+    else:
+        for x in dicionary:
+            if x == number:
+                print('Number already in use.\n')
+                return False
+        return True
+    
+    return False
+
+def validateLength(length):
+
+    if length > 0:
+        return True
+    else:
+        return False
+
+    
+    
 
 
 class hotel():
 
     def __init__(self):
 
-        self.__hotelName = ''
+        self.__hotelName = input('Enter the hotel name : ')
+        print('\nEnter the manager info : ')
+        self.__rooms = {}
+        self.__employees = {}
+
         self.__hotelManager = employee()
-        self.__roomList = []
-        try:
-            roomNumbers = open('roomNumbers.txt','x')
-            roomNumbers.close()
-        except:
-            print('File already created.\n')
+        self.__hotelManager.createEmployee(1)
+        self.__employees[1] = self.__hotelManager
          
         
 
@@ -33,27 +59,38 @@ class hotel():
         self.__hotelManager = manager
     
     def deleteHotelManager(self):
-        del(self.__hotelManager)
+        self.__hotelManager = None
+    
+    
+        
 
 
-    def createHotel(self):
-        self.__hotelName = input('Enter hotel name : ')
-        print('\nEnter the hotel manager info')
-        self.__hotelManager.createEmployee()
 
+    def managerInfo(self):
+        manager = self.getHotelManager()
+        print('Manager info\n')
+        manager.showData()
 
-    def validateRoomNumber(self, number):
-        if len(self.__roomList) == 0:
-            return True
+    
+    
+    def showRooms(self):
+        length = len(self.__rooms)
+        print(f'Total number of rooms : {length}\n')
+
+        if validateLength(self.__rooms):
+            for x in self.__rooms:
+
+                print(f'Room number : {x}\n')
+                if  self.__rooms[x].getOccupied : 
+
+                    print('Unoccupied room.')
+                else:
+
+                    print('Occupied room\n')
+                print('-------------------------')
         else:
-            for x in self.__roomList:
-                if(x.getRoomNumber()) == number:
-                    print('Number already in use.\n')
-                    return False
-            return True
 
-        return False
-
+            print('There are no rooms created.\n')
 
 
     def createRoom(self):
@@ -61,17 +98,37 @@ class hotel():
         habitacion = room()
         roomNumber = int(input('Enter the new room number : '))
 
-        while self.validateRoomNumber(roomNumber) == False:
+        while validateNumber(self.__rooms,roomNumber) == False:
             roomNumber = int(input('Enter the new room number : '))
-        habitacion.setRoomNumber   = roomNumber
+
+        habitacion.setRoomNumber(roomNumber)
+        self.__rooms[roomNumber] = habitacion
 
 
+    def addEmployee(self):
 
+            newEmployee = employee()
+            number = int(input('Enter the new employee id : '))
 
+            while validateNumber(self.__employees,number) == False:
+                number = int(input('Enter the new employee id : '))
+            
+            newEmployee.createEmployee(number)
+            self.__employees[number] = newEmployee
     
+    def showEmployees(self):
 
+
+
+        if validateLength(len(self.__employees)):
+            for x in self.__employees:
+                self.__employees[x].showData()
+
+        else:
+            print('There are no employees working.\n')
     
             
     
 
     
+ 
