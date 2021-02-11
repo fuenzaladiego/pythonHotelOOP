@@ -4,7 +4,7 @@ class customer(human):
 
     def __init__(self):
         self.__daysOfStay = 0
-        self.__roomNumber = 0
+
 
     
     def createCustomer(self,days):
@@ -20,16 +20,18 @@ class customer(human):
 
     def getDays(self):
         return self.__daysOfStay
-    def getroomNumber(self):
-        return self.__roomNumber
+
+    
 
     def setDays(self,days):
         self.__daysOfStay = days
-    def setRoomNumber(self,number):
-        self.__roomNumber = number    
+
+       
 
     def deleteDays(self):
+        
         self.__daysOfStay = None
+        
     def deleteRoomNumber(self):
         self.__roomNumber = None
         
@@ -39,9 +41,18 @@ class customerGroup():
     def __init__(self):
         self.__groupList = []
         self.__groupRepresentative = human()
+        self.__groupId = 0
+        self.__roomNumber = -1
     
     def getGroupList(self):
         return self.__groupList
+
+    def getGroupId(self):
+        return self.__groupId
+
+    def setGroupId(self,id):
+        self.__groupId = id
+
 
     def getGroupRepresentative(self):
         return self.__groupRepresentative
@@ -52,26 +63,32 @@ class customerGroup():
     def representativeData(self):
         self.getGroupRepresentative().showData
 
+    def setRoomNumber(self, number):
+        self.__roomNumber = number
+        
+    def getRoomNumber(self):
+        return self.__roomNumber
 
-
-    def createGroup(self):
+    def createGroup(self, id):
 
         groupSize = 0
         while groupSize <= 0:
-            groupSize = int(input('Enter the group size : '))
+            groupSize = int(input('\nEnter the group size : '))
 
         daysOfStay = 0
         while daysOfStay <= 0:
             daysOfStay = int(input('Enter days of stay : '))
+        self.__groupId = id
 
         for x in range(groupSize):
+            print('\nENTER THE CUSTOMER DATA.\n')
             customerAux = customer()
             customerAux.createCustomer(daysOfStay)
             self.__groupList.append(customerAux)
 
         print('\n')
         if len(self.__groupList) > 1:
-            print('SELECT THE GROUP REPRESENTATIVE')
+            print('\nSELECT THE GROUP REPRESENTATIVE\n')
         self.selectGroupRepresentative()
             
         
@@ -81,7 +98,7 @@ class customerGroup():
             for x in self.__groupList:
                 x.showData()
         else:
-            print('No customers in the group')
+            print('\nNo customers in the group\n')
 
     
     def selectGroupRepresentative(self):

@@ -3,7 +3,7 @@ class human():
     def __init__(
         self):
         self.__name = ''
-        self.__age = 0
+        self.__age = 0 
         self.__nationaliy = ''
 
     def createHuman(

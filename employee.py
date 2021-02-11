@@ -35,6 +35,23 @@ class employee(human):
         self.__id = id
         print('\n')
 
+    def modifyEmployee(self,position,salary,name,nation,age):
+
+        if len(position) > 0:
+            self.setPosition(position)
+        if salary > 0: 
+            self.setSalary(salary)
+
+        if len(name) > 0:
+            self.setName(name)
+
+        if len(nation) > 0:
+            self.setNationality(nation)
+
+        if age > 0:
+            self.setAge(age)
+
+
     def showData(self):
 
         super().showData()

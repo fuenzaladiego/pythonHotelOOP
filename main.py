@@ -1,6 +1,7 @@
-from hotel import *
+from menu import *
 
-hotel = hotel()
-hotel.addEmployee()
-hotel.addEmployee()
-hotel.showEmployees()
+
+
+
+diego = menuI()
+diego.deployMenu()

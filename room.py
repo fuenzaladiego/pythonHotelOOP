@@ -10,13 +10,14 @@ class room():
         self.__occupied = False
 
 
-    def occupyRoom(self):
+    def occupyRoom(self, group):
  
-        self.__roomGroup.createGroup()
-        self.__occupied = True    
+        self.__roomGroup.setRoomGroup(group)
+        self.setOccupied(True)  
 
     def vacateRoom(self):
         del(self.__roomGroup)
+        self.setOccupied(False)
 
 
 
@@ -38,3 +39,4 @@ class room():
 
     def getOccupied(self):
         return self.__occupied
+    
