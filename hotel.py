@@ -315,6 +315,7 @@ class hotel():
 
                 elif option == 4:
                     nation = input('Enter the new nationality : ')
+                    
                 elif option == 5:
                     age = int(input('Enter the new age : '))
 
